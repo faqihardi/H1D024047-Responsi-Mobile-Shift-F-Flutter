@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../models/location_model.dart';
-import '../../core/constants/api_contants.dart';
+import '../../core/constants/api_constants.dart';
 import '../../core/errors/app_failure.dart';
 
 class GeocodingService {
