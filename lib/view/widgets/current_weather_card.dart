@@ -10,10 +10,14 @@ import 'common_widgets.dart';
 class CurrentWeatherCard extends StatelessWidget {
   final LocationModel location;
   final WeatherModel weather;
+  final bool isFavorite;
+  final VoidCallback onFavorite;
   const CurrentWeatherCard({
     super.key,
     required this.location,
     required this.weather,
+    required this.isFavorite,
+    required this.onFavorite,
   });
 
   @override
@@ -36,6 +40,21 @@ class CurrentWeatherCard extends StatelessWidget {
               ),
               const SizedBox(width: 6),
               Expanded(child: Text(location.name, style: t.headlineSmall)),
+              const SizedBox(width: 4),
+              IconButton(
+                onPressed: onFavorite,
+                tooltip: isFavorite
+                    ? 'Hapus dari favorit'
+                    : 'Simpan ke favorit',
+                visualDensity: VisualDensity.compact,
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+                icon: Icon(
+                  isFavorite ? Icons.star_rounded : Icons.star_border_rounded,
+                  size: 24,
+                  color: isFavorite ? AppColors.accent : AppColors.faint,
+                ),
+              ),
             ],
           ),
           if (location.subtitle.isNotEmpty) ...[

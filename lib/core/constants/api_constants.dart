@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const geocodingBase = 'https://geocoding-api/open-meteo.com/v1';
+  static const geocodingBase = 'https://geocoding-api.open-meteo.com/v1';
   static const forecastBase = 'https://api.open-meteo.com/v1';
 
   static const currentFields = [

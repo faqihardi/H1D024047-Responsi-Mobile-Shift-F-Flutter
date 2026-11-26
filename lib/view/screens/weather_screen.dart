@@ -87,9 +87,57 @@ class WeatherScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CurrentWeatherCard(
-                          location: state.location!,
-                          weather: weather,
+                        BlocBuilder<FavoritesCubit, FavoritesState>(
+                          builder: (context, fav) {
+                            if (fav.items.isEmpty) {
+                              return const SizedBox.shrink();
+                            }
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SectionTitle('Lokasi Favorit'),
+                                  const SizedBox(height: 12),
+                                  Wrap(
+                                    spacing: 8,
+                                    runSpacing: 8,
+                                    children: fav.items
+                                        .map(
+                                          (loc) => ActionChip(
+                                            backgroundColor: AppColors.surface,
+                                            side: const BorderSide(
+                                              color: AppColors.border,
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                            label: Text(
+                                              loc.name,
+                                              style: t.titleSmall,
+                                            ),
+                                            onPressed: () => context
+                                                .read<WeatherCubit>()
+                                                .load(loc),
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                        BlocBuilder<FavoritesCubit, FavoritesState>(
+                          builder: (context, fav) => CurrentWeatherCard(
+                            location: state.location!,
+                            weather: weather,
+                            isFavorite: fav.contains(state.location!.id),
+                            onFavorite: () => context
+                                .read<FavoritesCubit>()
+                                .toggle(state.location!),
+                          ),
                         ),
                         const SizedBox(height: 12),
                         WeatherDetailGrid(weather: weather),
@@ -97,46 +145,6 @@ class WeatherScreen extends StatelessWidget {
                         const SectionTitle('Perkiraan 7 Hari'),
                         const SizedBox(height: 12),
                         DailyForecastList(items: weather.daily),
-                        const SizedBox(height: 28),
-                        BlocBuilder<FavoritesCubit, FavoritesState>(
-                          builder: (context, fav) {
-                            if (fav.items.isEmpty)
-                              return const SizedBox.shrink();
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SectionTitle('Lokasi Favorit'),
-                                const SizedBox(height: 12),
-                                Wrap(
-                                  spacing: 8,
-                                  runSpacing: 8,
-                                  children: fav.items
-                                      .map(
-                                        (loc) => ActionChip(
-                                          backgroundColor: AppColors.surface,
-                                          side: const BorderSide(
-                                            color: AppColors.border,
-                                          ),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              12,
-                                            ),
-                                          ),
-                                          label: Text(
-                                            loc.name,
-                                            style: t.titleSmall,
-                                          ),
-                                          onPressed: () => context
-                                              .read<WeatherCubit>()
-                                              .load(loc),
-                                        ),
-                                      )
-                                      .toList(),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
                       ],
                     ),
                   ),

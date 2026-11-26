@@ -99,7 +99,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             return const EmptyView(
                               icon: Icons.search_rounded,
                               title: 'Mulai Pencarian',
-                              subtitle: 'Ketik minimal 2 huruf. Hasil diambil langsung dari Geocoding API Open-Meteo.',
+                              subtitle: 'Ketik minimal 2 huruf.',
                             );
                           }
                           return Column(
