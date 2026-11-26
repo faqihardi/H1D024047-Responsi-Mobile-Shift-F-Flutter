@@ -1,3 +1,9 @@
+### Nama  : Faqih Ardiansyah
+### NIM   : H1D024047
+### Shift KRS : A
+### Shift Praktikum : F
+
+
 # Weather App
 
 Aplikasi cuaca Flutter yang menampilkan cuaca terkini dan prakiraan 7 hari menggunakan
@@ -65,16 +71,16 @@ lib/
 
 **Penjelasan lapisan:**
 
-- **`core/`** — kode dasar yang dipakai semua lapisan: konstanta API dan Hive, tema/warna,
+- **`core/`** : kode dasar yang dipakai semua lapisan: konstanta API dan Hive, tema/warna,
   formatter tampilan, mapping kode cuaca, serta `AppFailure` untuk pesan error.
-- **`data/`** — berisi model, service HTTP ke Open-Meteo, dan repository. Repository menjadi
+- **`data/`** : berisi model, service HTTP ke Open-Meteo, dan repository. Repository menjadi
   satu-satunya pintu akses data: mengambil data jaringan sekaligus membaca/menulis Hive
   untuk favorit, riwayat, dan lokasi terakhir.
-- **`viewmodel/`** — Cubit dan state per fitur (`weather`, `search`, `favorites`). Mengatur
+- **`viewmodel/`** : Cubit dan state per fitur (`weather`, `search`, `favorites`). Mengatur
   status UI (loading, success, empty, error) dan memanggil repository.
-- **`view/`** — layar dan widget. Hanya menampilkan state dari cubit dan meneruskan aksi
+- **`view/`** : layar dan widget. Hanya menampilkan state dari cubit dan meneruskan aksi
   pengguna (pilih kota, favorit, refresh, cari) kembali ke cubit.
-- **`main.dart` & `app.dart`** — titik masuk aplikasi: menyiapkan Hive, dependency
+- **`main.dart` & `app.dart`** : titik masuk aplikasi: menyiapkan Hive, dependency
   injection, dan `MaterialApp`.
 
 ## Implementasi API
