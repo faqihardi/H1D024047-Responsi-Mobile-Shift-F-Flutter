@@ -8,7 +8,7 @@ terakhir yang disimpan secara lokal memakai Hive.
 
 | Home | Search | Favorit | Loading | Error |
 |---|---|---|---|---|
-| ![](screenshots/home.png) | ![](screenshots/search.png) | ![](screenshots/favorit.png) | ![](screenshots/loading.png) | ![](screenshots/error.png) |
+| ![](screenshots/home.jpeg) | ![](screenshots/search.jpeg) | ![](screenshots/favorit.jpeg) | ![](screenshots/loading.jpeg) | ![](screenshots/error.jpeg) |
 
 ## Struktur Aplikasi
 
@@ -85,9 +85,9 @@ lib/
 
 ## Penerapan MVVM
 - Model: data/ (models, services, repositories)
-- ViewModel: viewmodel/ (Cubit dari flutter_bloc) — tanpa BuildContext
-- View: view/ (screens, widgets) — hanya render state
-Alur: View → Cubit → Repository → Service → Model → emit(state) → BlocBuilder
+- ViewModel: viewmodel/ (Cubit dari flutter_bloc) 
+- View: view/ (screens, widgets) 
+Alur: View -> Cubit -> Repository -> Service -> Model -> emit(state) -> BlocBuilder
 
 ## Local Storage
 Hive, TypeAdapter manual (typeId 0), box: favorites, search_history, last_location.
